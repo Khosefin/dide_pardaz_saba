@@ -30,7 +30,7 @@ export default function VideosSection() {
         className="w-full mt-5"
         onMouseEnter={autoplay.current.stop}
         onMouseLeave={autoplay.current.reset}
-            dir='ltr'
+        dir='ltr'
         >
             <CarouselContent >
                 <CarouselItem className="basis-1/2 lg:basis-1/3" >
