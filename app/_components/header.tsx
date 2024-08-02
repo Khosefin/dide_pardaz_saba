@@ -15,11 +15,10 @@ export default function Header() {
         <header className="w-full h-fit flex flex-col items-center sticky top-0 z-50">
             <nav
                 className={cn(
-                    'w-full transition-all text-white bg-[hsl(180,100%,28.63%)] border-b-4 border-[hsl(180,100%,43.73%)]',
-                    isDropdownOpen ? 'h-[22rem] md:h-12' : 'h-12'
+                    'w-full transition-all text-white bg-[hsl(180,100%,28.63%)] border-b-4 border-[hsl(180,100%,43.73%)]'
                 )}
             >
-                <div className='flex w-11/12 h-12 mx-auto text-center text-xs border-b md:border-none'>
+                <div className='flex relative w-11/12 h-12 mx-auto text-center text-xs'>
                     <DesktopMenu/>
                     <div className='h-full w-full flex items-center text-center'>
                         <IoMenu
@@ -45,9 +44,9 @@ export default function Header() {
     );
 }
 
-function ItemMenu() {
+function ItemMenu({classN}:{classN:string}) {
     return (
-        <>
+        <div className={classN}>
             <MenuItem icon={<IoHomeSharp className='w-3 h-3'/>} text="خانه"/>
             <MenuItem text="درباره ما"/>
             <div className='relative flex items-center gap-0.5 group cursor-pointer'>
@@ -67,15 +66,13 @@ function ItemMenu() {
             <MenuItem text="کلینیک روانشناسی"/>
             <MenuItem text="سوالات متداول"/>
             <MenuItem text="همکاری با ما"/>
-            <MenuItem text="ورود/ ثبت نام"/></>
+            <MenuItem text="ورود/ ثبت نام"/></div>
     )
 }
 
 function DesktopMenu() {
     return (
-        <div className='md:flex hidden w-full text-nowrap items-center gap-4 [&>div]:py-4'>
-            <ItemMenu/>
-        </div>
+            <ItemMenu classN={'md:flex hidden w-full text-nowrap items-center gap-4 [&>div]:py-4'}/>
     );
 }
 
@@ -83,11 +80,11 @@ function DropdownMenu({isOpen}: { isOpen?: boolean }) {
     return (
         <div
             className={cn(
-                'flex-col w-11/12 mx-auto text-nowrap items-start text-center [&>div]:py-3 text-xs',
-                isOpen ? 'flex' : 'hidden'
+                'transition-all md:!hidden overflow-hidden right-0 left-0 bg-[hsl(180,100%,28.63%)] absolute z-50 ',
+                isOpen ? 'h-80' : 'h-0'
             )}
         >
-            <ItemMenu/>
+            <ItemMenu classN="border-t md:border-none flex flex-col text-nowrap items-start text-center [&>div]:py-3 text-xs w-11/12 mx-auto"/>
         </div>
     );
 }
